@@ -1,0 +1,41 @@
+<div class="container">
+  <h3>{{employeeId?'Edit':'Add'}} Employee</h3>  
+    <form [formGroup]="employeeForm" class="m-3">
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <input formControlName="name" class="form-control" id="name" type="text" name="name">
+      </div>
+  
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input formControlName="email" class="form-control" id="email" type="email" name="email">
+      </div>
+  
+      <div class="mb-3">
+        <label for="mobileNumber">Mobile Number</label>
+        <input formControlName="mobileNumber" class="form-control" id="mobileNumber" type="text" name="mobileNumber">
+      </div>
+  
+      <div class="mb-3">
+        <label for="homeAddress">Address</label>
+        <input formControlName="homeAddress" class="form-control" id="homeAddress" type="text" name="homeAddress">
+      </div>
+  
+      <div class="mb-3">
+        <label for="photo">Photo</label>
+        <input (change)="photoUpload($event)" class="form-control" id="photo" type="file">
+      </div>
+  
+      <div class="d-flex justify-content-end">
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+            <i class="bi bi-arrow-left"></i> Back
+          </button>
+        <button type="button" class="btn btn-primary me-2" style="margin-left: 2px;" (click)="save()">
+          <i class="bi bi-save"></i> Save
+        </button>
+  
+       
+      </div>
+    </form>
+  </div>
+  

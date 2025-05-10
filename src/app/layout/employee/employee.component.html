@@ -1,0 +1,54 @@
+<div *ngIf="!isviewForm">
+  <div  class="d-flex justify-content-between">
+    <h3>Employee Management</h3>
+    <div class="mb-3">
+      <button class="btn btn-success" (click)="viewFormAdd()">
+        <i class="bi bi-plus-lg"></i> Add
+      </button>
+    </div></div>
+ 
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Photo</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Address</th>
+        <th colspan="2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td style="vertical-align: middle">
+          <img *ngIf="employee.photo" [src]="photoUrl(employee.photo)" alt="employee Photo" class="img-thumbnail" width="50" />
+          <span *ngIf="!employee.photo">No Photo</span>
+        </td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.mobileNumber }}</td>
+        <td>{{ employee.homeAddress }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="viewFormEdit(employee.id)">
+            <i class="bi bi-pencil-square"></i>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.id)">
+            <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-employee-form
+  *ngIf="isviewForm"
+  (onSave)="handleSave()"
+  [employeeId]="this.selectedEmployeeID"
+  [isEditMode]="isEditMode">
+</app-employee-form>

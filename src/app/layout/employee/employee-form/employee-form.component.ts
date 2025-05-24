@@ -38,6 +38,7 @@ export class EmployeeFormComponent implements OnChanges {
       photoFile: new FormControl(''),
     });
   }
+  
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['employeeId']) {
       if (this.employeeId != '' && this.employeeId != null) {
@@ -66,7 +67,6 @@ export class EmployeeFormComponent implements OnChanges {
     const file: File = $event.target.files[0];
     if (file) {
       this.selectedFile = file;
-
       this.employeeForm.patchValue({
         photoFile: file,
       });
@@ -74,7 +74,7 @@ export class EmployeeFormComponent implements OnChanges {
   }
 
   fillForm(data: IEmployee) {
-    this.employeeForm.patchValue(data);
+    this.employeeForm.patchValue(data);//عشان تعبي الداتا داخل الفورم
   }
   save() {
     if (this.isEditMode && this.employeeId) {

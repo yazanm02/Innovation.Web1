@@ -5,6 +5,35 @@
       <button class="btn btn-success" (click)="viewFormAdd()">
         <i class="bi bi-plus-lg"></i> Add
       </button>
+<button class="btn btn-outline-primary" style="margin-left: 5px;" (click)="openExportModal()">
+  Export to Excel
+</button>
+
+
+<div *ngIf="showExportModal" class="modal-backdrop-custom">
+  <div class="modal-content-custom">
+    <h5>Select Columns to Export</h5>
+    
+    <div *ngFor="let col of allColumns" class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [value]="col"
+        (change)="onColumnToggle($event)"
+        [checked]="selectedColumns.includes(col)"
+        id="{{'chk_' + col}}">
+      <label class="form-check-label" [for]="'chk_' + col">{{ col }}</label>
+    </div>
+
+    <div class="mt-3 d-flex justify-content-end">
+      <button class="btn btn-secondary me-2" (click)="closeExportModal()">Cancel</button>
+      <button class="btn btn-success" (click)="exportToExcel()">Confirm Export</button>
+    </div>
+  </div>
+</div>
+
+
+
     </div></div>
  
 
